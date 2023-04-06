@@ -1,0 +1,106 @@
+:root {
+    --card-column-count: 5;
+    --primary-accent-color: rgb(245, 27, 158);
+    --secondary-accent-color: rgb(159, 215, 147);
+    --terciary-accent-color: rgb(245, 241, 2);
+    --primary-text-color: black;
+    --primary-background-color: white;
+    --card-background-color: var(--primary-accent-color);
+    --task-text-color: var(--primary-text-color);
+    --task-background-color: var(--primary-background-color);
+    --border-radius: .5cm;
+  }
+
+@media print {
+    #setup {display: none !important}
+    #cards {
+        -webkit-print-color-adjust:exact !important;
+        print-color-adjust:exact !important;
+    }
+    
+    .card {
+        margin: .5cm auto !important;
+        break-inside: avoid;
+    }
+}
+
+@page {
+    margin: 1cm;
+}
+
+
+body {
+    background-color: #333;
+}
+
+#templates {
+    display: none;
+}
+
+#setup {
+    display: flex;
+    flex-direction: column;
+    width: 11cm;
+    margin: auto;
+
+}
+
+label[for="tasks"], label[for="card_count"] {
+    font-size: 2em;
+    color: white;
+    margin-top: .5em;
+    margin-bottom:.3em;
+}
+
+button#generate {
+    color: white;
+    font-size: 1.5em;
+    font-weight: bold;
+    background-color: var(--primary-accent-color);
+    border: none;
+    border-radius: .5em;
+    padding: .5em;
+    margin-top: .5em;
+}
+
+.card .title {
+    grid-column-start: 1;
+    grid-column-end: calc(var(--card-column-count) + 1);
+    padding: 0;
+    margin: 0;
+
+    color: white;
+    font-size: 1.5cm;
+}
+
+.card {
+    display: grid;
+    grid-template-columns: repeat(var(--card-column-count), 1fr);
+
+    margin: 1cm auto;
+    width: 10cm;
+    padding: .5cm;
+    gap: .2cm;
+    
+    border-radius: var(--border-radius);
+    background-color: var(--card-background-color);
+}
+
+.task {
+    aspect-ratio: 1;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    padding: .2cm;
+
+    border-radius: var(--border-radius);
+    
+    font-size: 8pt;
+    /* hyphens: auto; */
+    color: var(--task-text-color);
+    background-color: var(--task-background-color);
+    overflow: hidden;
+}
